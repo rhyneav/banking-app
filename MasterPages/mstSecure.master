@@ -1,0 +1,12 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPages/mstOutside.master" AutoEventWireup="true" CodeFile="mstSecure.master.cs" Inherits="MasterPages_mstSecure" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphMain" Runat="Server">
+    <asp:ContentPlaceHolder id="cphMain" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
