@@ -14,15 +14,22 @@ public partial class Pages_Login : System.Web.UI.Page
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        DataView dview = (DataView)(sdsUserInformation.Select(DataSourceSelectArguments.Empty));
-
-        foreach(DataRow drow in dview.Table.Rows)
+        try
         {
-            if (txtPassword.Text == drow["vcPassword"].ToString())
+            DataView dview = (DataView)(sdsUserInformation.Select(DataSourceSelectArguments.Empty));
+
+            foreach (DataRow drow in dview.Table.Rows)
             {
-                Session["UserID"] = drow["pkUserID"];
-                Response.Redirect("Landing.aspx");
+                if (txtPassword.Text == drow["vcPassword"].ToString())
+                {
+                    Session["UserID"] = drow["pkUserID"];
+                    Response.Redirect("Landing.aspx");
+                }
             }
+        }
+        catch (Exception)
+        {
+            // it did not work, give a message
         }
 
         txtUsername.Focus();

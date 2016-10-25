@@ -9,10 +9,17 @@ public partial class MasterPages_mstSecure : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        // If there is no session id, redirect to the login page
         if (Session["UserID"] == null)
         {
-            Response.Redirect("Login.aspx");
+            // Get current page file name
+            string currentPage = System.IO.Path.GetFileName(Request.Url.AbsolutePath);
+            
+            // if the current page isn't login, redirect to the login page. This prevents endless feedback loop.
+            if (currentPage != "Login.aspx")
+            {
+                Response.Redirect("Login.aspx");
+            }
+
         }
     }
 }
