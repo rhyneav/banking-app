@@ -27,7 +27,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <div>Head</div>
+        <div>Head <a href="../Pages/ManageUsers.aspx">ManageUsers.aspx</a></div>
         <div>
             <asp:ContentPlaceHolder id="cphMain" runat="server">
         
