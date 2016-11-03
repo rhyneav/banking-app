@@ -14,6 +14,9 @@
     <!-- Bootstrap -->
     <link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
 
+    <!-- My CSS -->
+    <link href="../StyleSheets/custom.css" rel="stylesheet" />
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -21,66 +24,71 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <asp:ContentPlaceHolder id="head" runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div class="container">Head <a href="../Pages/ManageUsers.aspx">ManageUsers.aspx</a>
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">WebSiteName</a>
+        <div>
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">WebSiteName</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="../Pages/ManageUsers.aspx">ManageUsers.aspx</a></li>
+                            <li><a href="../Pages/ManageCustomers.aspx">ManageCustomers.aspx</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <asp:SqlDataSource ID="sdsUserInformation" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [vcName] FROM [VlaservichtblUser] WHERE ([pkUserID] = @pkUserID)">
+                                    <SelectParameters>
+                                        <asp:SessionParameter Name="pkUserID" SessionField="UserID" Type="Int32" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                                <asp:FormView ID="frmvUserInformation" runat="server" DataSourceID="sdsUserInformation">
+                                    <EditItemTemplate>
+                                        vcName:
+                                <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
+                                        <br />
+                                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+                                        &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                    </EditItemTemplate>
+                                    <EmptyDataTemplate>
+                                        <asp:LinkButton ID="lbtnLogin" runat="server" Class="btn btn-danger btn-login" PostBackUrl="~/Pages/Login.aspx">Login</asp:LinkButton>
+                                    </EmptyDataTemplate>
+                                    <InsertItemTemplate>
+                                        vcName:
+                                <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
+                                        <br />
+                                        <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                                        &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                    </InsertItemTemplate>
+                                    <ItemTemplate>
+                                        Welcome,
+                                <asp:Label ID="vcNameLabel" runat="server" Text='<%# Bind("vcName") %>' />
+                                        <br />
+
+                                    </ItemTemplate>
+                                </asp:FormView>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="nav navbar-nav">
-                      <li class="active"><a href="#">Home</a></li>
-                      <li><a href="#">Page 1</a></li>
-                      <li><a href="#">Page 2</a></li> 
-                      <li><a href="#">Page 3</a></li> 
-                    </ul>
-                </div>
-            </nav>
-            <asp:FormView ID="frmvUserInformation" runat="server" DataSourceID="sdsUserInformation">
-            <EditItemTemplate>
-                vcName:
-                <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
-                <br />
-                <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-            </EditItemTemplate>
-            <EmptyDataTemplate>
-                <asp:LinkButton ID="lbtnLogin" runat="server" Class="btn btn-danger" PostBackUrl="~/Pages/Login.aspx">Login</asp:LinkButton>
-            </EmptyDataTemplate>
-            <InsertItemTemplate>
-                vcName:
-                <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
-                <br />
-                <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-            </InsertItemTemplate>
-            <ItemTemplate>
-                Welcome,
-                <asp:Label ID="vcNameLabel" runat="server" Text='<%# Bind("vcName") %>' />
-                <br />
+                </nav>
 
-            </ItemTemplate>
-            </asp:FormView>
-            <asp:SqlDataSource ID="sdsUserInformation" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [vcName] FROM [VlaservichtblUser] WHERE ([pkUserID] = @pkUserID)">
-                <SelectParameters>
-                    <asp:SessionParameter Name="pkUserID" SessionField="UserID" Type="Int32" />
-                </SelectParameters>
-            </asp:SqlDataSource>
+
+            </div>
+
+            <div class="container">
+
+                <asp:ContentPlaceHolder ID="cphMain" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="container">Foot</div>
         </div>
-
-        <div class="container">
-
-            <asp:ContentPlaceHolder id="cphMain" runat="server">
-        
-            </asp:ContentPlaceHolder>
-        </div>
-        <div class="container">Foot</div>
-    </div>
     </form>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

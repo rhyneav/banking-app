@@ -30,30 +30,36 @@
             <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
             &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </EditItemTemplate>
+        <EmptyDataTemplate>
+            <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+        </EmptyDataTemplate>
         <InsertItemTemplate>
-            vcUserName:
+            UserName:
             <asp:TextBox ID="vcUserNameTextBox" runat="server" Text='<%# Bind("vcUserName") %>' />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="vcUserNameTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Username" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
             <br />
-            vcPassword:
+            Password:
             <asp:TextBox ID="vcPasswordTextBox" runat="server" Text='<%# Bind("vcPassword") %>' />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="vcPasswordTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Password" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
             <br />
-            vcName:
+            Name:
             <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="vcNameTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Name" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
             <br />
-            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" ValidationGroup="Insert" />
             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </InsertItemTemplate>
         <ItemTemplate>
-            pkUserID:
+            UserID:
             <asp:Label ID="pkUserIDLabel" runat="server" Text='<%# Eval("pkUserID") %>' />
             <br />
-            vcUserName:
+            UserName:
             <asp:Label ID="vcUserNameLabel" runat="server" Text='<%# Bind("vcUserName") %>' />
             <br />
-            vcPassword:
+            Password:
             <asp:Label ID="vcPasswordLabel" runat="server" Text='<%# Bind("vcPassword") %>' />
             <br />
-            vcName:
+            Name:
             <asp:Label ID="vcNameLabel" runat="server" Text='<%# Bind("vcName") %>' />
             <br />
             <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
