@@ -11,4 +11,10 @@ public partial class Pages_ManageCustomers : System.Web.UI.Page
     {
 
     }
+    protected void frmvCustomerEdit_ItemInserted(object sender, FormViewInsertedEventArgs e)
+    {
+        // Get new data to update table on submit
+        sdsCustomerList.DataBind();
+        grdvCustomerList.DataBind();
+    }
 }

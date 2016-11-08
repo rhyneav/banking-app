@@ -22,7 +22,7 @@
         <SortedDescendingCellStyle BackColor="#FFFDF8" />
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
-    <asp:FormView ID="frmvCustomerEdit" runat="server" DataKeyNames="pkCustomerID" DataSourceID="sdsCustomerEdit">
+    <asp:FormView ID="frmvCustomerEdit" runat="server" DataKeyNames="pkCustomerID" DataSourceID="sdsCustomerEdit" OnItemInserted="frmvCustomerEdit_ItemInserted">
         <EditItemTemplate>
             pkCustomerID:
             <asp:Label ID="pkCustomerIDLabel1" runat="server" Text='<%# Eval("pkCustomerID") %>' />

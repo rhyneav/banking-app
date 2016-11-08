@@ -1,9 +1,6 @@
-﻿body {
-}
-
-.btn-login {
-    /*margin-right: 12px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);*/
+﻿#frmvUserInformation {
+    min-height: 50px;
+    color: #777;
+    margin-left: 12px;
+    margin-right: 12px;
 }

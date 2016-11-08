@@ -29,18 +29,19 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div>
             <div class="container">
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#">WebSiteName</a>
+                            <a class="navbar-brand" href="../Default.aspx">WebSiteName</a>
                         </div>
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="../Pages/ManageUsers.aspx">ManageUsers.aspx</a></li>
-                            <li><a href="../Pages/ManageCustomers.aspx">ManageCustomers.aspx</a></li>
-                            <li><a href="#">Page 3</a></li>
+                            <li><a href="../Default.aspx">Home</a></li>
+                            <li><a href="../Pages/ManageUsers.aspx">Manage Users</a></li>
+                            <li><a href="../Pages/ManageCustomers.aspx">Manage Customers</a></li>
+                            <li><a href="../Pages/ManageLoans.aspx">Manage Loans</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
