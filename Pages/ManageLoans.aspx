@@ -20,6 +20,105 @@
                     <asp:ControlParameter ControlID="txtCustomerSearch" Name="vcName" PropertyName="Text" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
+            <asp:GridView ID="grdvCustomerLoanList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkLoanID" DataSourceID="sdsCustomerLoanList" OnSelectedIndexChanged="grdvCustomerLoanList_SelectedIndexChanged">
+                <Columns>
+                    <asp:CommandField ShowSelectButton="True" />
+                    <asp:BoundField DataField="pkLoanID" HeaderText="pkLoanID" InsertVisible="False" ReadOnly="True" SortExpression="pkLoanID" />
+                    <asp:BoundField DataField="decPrincipal" HeaderText="decPrincipal" SortExpression="decPrincipal" />
+                    <asp:BoundField DataField="decInterestRate" HeaderText="decInterestRate" SortExpression="decInterestRate" />
+                    <asp:BoundField DataField="intMonths" HeaderText="intMonths" SortExpression="intMonths" />
+                    <asp:BoundField DataField="dtCreated" HeaderText="dtCreated" SortExpression="dtCreated" />
+                </Columns>
+            </asp:GridView>
+            <asp:SqlDataSource ID="sdsCustomerLoanList" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [pkLoanID], [decPrincipal], [decInterestRate], [intMonths], [dtCreated] FROM [VlaservichtblLoan] WHERE ([fkCustomerID] = @fkCustomerID) ORDER BY [dtCreated]">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="grdvCustomerList" Name="fkCustomerID" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            <asp:FormView ID="frmvCustomerLoanEdit" runat="server" DataKeyNames="pkLoanID" DataSourceID="sdsCustomerLoanEdit">
+                <EditItemTemplate>
+                    pkLoanID:
+                    <asp:Label ID="pkLoanIDLabel1" runat="server" Text='<%# Eval("pkLoanID") %>' />
+                    <br />
+                    decPrincipal:
+                    <asp:TextBox ID="decPrincipalTextBox" runat="server" Text='<%# Bind("decPrincipal") %>' />
+                    <br />
+                    fkCustomerID:
+                    <asp:TextBox ID="fkCustomerIDTextBox" runat="server" Text='<%# Bind("fkCustomerID") %>' />
+                    <br />
+                    decInterestRate:
+                    <asp:TextBox ID="decInterestRateTextBox" runat="server" Text='<%# Bind("decInterestRate") %>' />
+                    <br />
+                    intMonths:
+                    <asp:TextBox ID="intMonthsTextBox" runat="server" Text='<%# Bind("intMonths") %>' />
+                    <br />
+                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                </EditItemTemplate>
+                <EmptyDataTemplate>
+                    <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+                </EmptyDataTemplate>
+                <InsertItemTemplate>
+                    decPrincipal:
+                    <asp:TextBox ID="decPrincipalTextBox" runat="server" Text='<%# Bind("decPrincipal") %>' />
+                    <br />
+                    fkCustomerID:
+                    <asp:TextBox ID="fkCustomerIDTextBox" runat="server" Text='<%# Bind("fkCustomerID") %>' />
+                    <br />
+                    decInterestRate:
+                    <asp:TextBox ID="decInterestRateTextBox" runat="server" Text='<%# Bind("decInterestRate") %>' />
+                    <br />
+                    intMonths:
+                    <asp:TextBox ID="intMonthsTextBox" runat="server" Text='<%# Bind("intMonths") %>' />
+                    <br />
+                    <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                </InsertItemTemplate>
+                <ItemTemplate>
+                    pkLoanID:
+                    <asp:Label ID="pkLoanIDLabel" runat="server" Text='<%# Eval("pkLoanID") %>' />
+                    <br />
+                    decPrincipal:
+                    <asp:Label ID="decPrincipalLabel" runat="server" Text='<%# Bind("decPrincipal") %>' />
+                    <br />
+                    fkCustomerID:
+                    <asp:Label ID="fkCustomerIDLabel" runat="server" Text='<%# Bind("fkCustomerID") %>' />
+                    <br />
+                    decInterestRate:
+                    <asp:Label ID="decInterestRateLabel" runat="server" Text='<%# Bind("decInterestRate") %>' />
+                    <br />
+                    intMonths:
+                    <asp:Label ID="intMonthsLabel" runat="server" Text='<%# Bind("intMonths") %>' />
+                    <br />
+                    <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
+                    &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                    &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+                </ItemTemplate>
+            </asp:FormView>
+            <asp:SqlDataSource ID="sdsCustomerLoanEdit" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" DeleteCommand="DELETE FROM [VlaservichtblLoan] WHERE [pkLoanID] = @pkLoanID" InsertCommand="INSERT INTO [VlaservichtblLoan] ([decPrincipal], [fkCustomerID], [decInterestRate], [intMonths]) VALUES (@decPrincipal, @fkCustomerID, @decInterestRate, @intMonths)" SelectCommand="SELECT [pkLoanID], [decPrincipal], [fkCustomerID], [decInterestRate], [intMonths] FROM [VlaservichtblLoan] WHERE ([pkLoanID] = @pkLoanID)" UpdateCommand="UPDATE [VlaservichtblLoan] SET [decPrincipal] = @decPrincipal, [fkCustomerID] = @fkCustomerID, [decInterestRate] = @decInterestRate, [intMonths] = @intMonths WHERE [pkLoanID] = @pkLoanID">
+                <DeleteParameters>
+                    <asp:Parameter Name="pkLoanID" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="decPrincipal" Type="Decimal" />
+                    <asp:Parameter Name="fkCustomerID" Type="Int32" />
+                    <asp:Parameter Name="decInterestRate" Type="Decimal" />
+                    <asp:Parameter Name="intMonths" Type="Int32" />
+                </InsertParameters>
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="grdvCustomerLoanList" Name="pkLoanID" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="decPrincipal" Type="Decimal" />
+                    <asp:Parameter Name="fkCustomerID" Type="Int32" />
+                    <asp:Parameter Name="decInterestRate" Type="Decimal" />
+                    <asp:Parameter Name="intMonths" Type="Int32" />
+                    <asp:Parameter Name="pkLoanID" Type="Int32" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+            <asp:Label ID="lblPayment" runat="server" Text="Label"></asp:Label>
+            <asp:GridView ID="grdvAmoritizationSchedule" runat="server">
+            </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
