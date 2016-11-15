@@ -4,3 +4,21 @@
     margin-left: 12px;
     margin-right: 12px;
 }
+
+.navbar {
+    border-radius: 0px;
+    border-color: #f8f8f8; 
+    border-bottom-color: #e7e7e7
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    min-height: 60px;
+    line-height: 60px;
+    background-color: #f8f8f8;
+
+    border: 1px solid transparent;
+    border-top-color: #e7e7e7
+}

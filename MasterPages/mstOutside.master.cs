@@ -11,4 +11,13 @@ public partial class MasterPages_mstOutside : System.Web.UI.MasterPage
     {
 
     }
+    protected void frmvUserInformation_PageIndexChanging(object sender, FormViewPageEventArgs e)
+    {
+        /* oops! */
+    }
+    protected void lbtnLogout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Login.aspx");
+    }
 }

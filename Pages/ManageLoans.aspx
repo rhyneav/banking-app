@@ -117,7 +117,11 @@
                 </UpdateParameters>
             </asp:SqlDataSource>
             <asp:Label ID="lblPayment" runat="server" Text="Label"></asp:Label>
-            <asp:GridView ID="grdvAmoritizationSchedule" runat="server">
+            <asp:GridView ID="grdvAmoritizationSchedule" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="Month" HeaderText="Month" SortExpression="Month" />
+                    <asp:BoundField DataField="Principal" HeaderText="Beginning Amount" SortExpression="Principal" />
+                </Columns>
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>

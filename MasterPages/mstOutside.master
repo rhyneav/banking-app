@@ -31,64 +31,65 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div>
-            <div class="container-fluid">
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="../Default.aspx">WebSiteName</a>
-                        </div>
-                        <ul class="nav navbar-nav">
-                            <li><a href="../Default.aspx">Home</a></li>
-                            <li><a href="../Pages/ManageUsers.aspx">Manage Users</a></li>
-                            <li><a href="../Pages/ManageCustomers.aspx">Manage Customers</a></li>
-                            <li><a href="../Pages/ManageLoans.aspx">Manage Loans</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <asp:SqlDataSource ID="sdsUserInformation" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [vcName] FROM [VlaservichtblUser] WHERE ([pkUserID] = @pkUserID)">
-                                    <SelectParameters>
-                                        <asp:SessionParameter Name="pkUserID" SessionField="UserID" Type="Int32" />
-                                    </SelectParameters>
-                                </asp:SqlDataSource>
-                                <asp:FormView ID="frmvUserInformation" runat="server" DataSourceID="sdsUserInformation">
-                                    <EditItemTemplate>
-                                        vcName:
-                                <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
-                                        <br />
-                                        <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                                        &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                                    </EditItemTemplate>
-                                    <EmptyDataTemplate>
-                                        <asp:LinkButton ID="lbtnLogin" runat="server" Class="btn btn-danger btn-login" PostBackUrl="~/Pages/Login.aspx">Login</asp:LinkButton>
-                                    </EmptyDataTemplate>
-                                    <InsertItemTemplate>
-                                        vcName:
-                                <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
-                                        <br />
-                                        <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                                        &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-                                    </InsertItemTemplate>
-                                    <ItemTemplate>
-                                        Welcome,
-                                <asp:Label ID="vcNameLabel" runat="server" Text='<%# Bind("vcName") %>' />
-                                        <br />
-
-                                    </ItemTemplate>
-                                </asp:FormView>
-                            </li>
-                        </ul>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="../Default.aspx">WebSiteName</a>
                     </div>
-                </nav>
+                    <ul class="nav navbar-nav">
+                        <li><a href="../Default.aspx">Home</a></li>
+                        <li><a href="../Default.aspx">About</a></li>
+                        <li><a href="../Pages/ManageUsers.aspx">Manage Users</a></li>
+                        <li><a href="../Pages/ManageCustomers.aspx">Manage Customers</a></li>
+                        <li><a href="../Pages/ManageLoans.aspx">Manage Loans</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <asp:SqlDataSource ID="sdsUserInformation" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [vcName] FROM [VlaservichtblUser] WHERE ([pkUserID] = @pkUserID)">
+                                <SelectParameters>
+                                    <asp:SessionParameter Name="pkUserID" SessionField="UserID" Type="Int32" />
+                                </SelectParameters>
+                            </asp:SqlDataSource>
+                            <asp:FormView ID="frmvUserInformation" runat="server" DataSourceID="sdsUserInformation" OnPageIndexChanging="frmvUserInformation_PageIndexChanging">
+                                <EditItemTemplate>
+                                    vcName:
+                            <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
+                                    <br />
+                                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+                                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                </EditItemTemplate>
+                                <EmptyDataTemplate>
+                                    <asp:LinkButton ID="lbtnLogin" runat="server" Class="btn btn-danger btn-login" PostBackUrl="~/Pages/Login.aspx">Login</asp:LinkButton>
+                                </EmptyDataTemplate>
+                                <InsertItemTemplate>
+                                    vcName:
+                            <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
+                                    <br />
+                                    <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                </InsertItemTemplate>
+                                <ItemTemplate>
+                                    Welcome,
+                            <asp:Label ID="vcNameLabel" runat="server" Text='<%# Bind("vcName") %>' />
+                                    <asp:LinkButton ID="lbtnLogout" runat="server" Class="btn btn-warning btn-login" PostBackUrl="~/Pages/Login.aspx" OnClick="lbtnLogout_Click">Logout</asp:LinkButton>
 
-
-            </div>
+                                </ItemTemplate>
+                            </asp:FormView>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
             <div class="container">
 
                 <asp:ContentPlaceHolder ID="cphMain" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-            <div class="container">Foot</div>
+            <footer class="footer">
+                <div class="container">
+                    <span class="text-muted">Place sticky footer content here.</span>
+                </div>
+            </footer>
         </div>
     </form>
 
