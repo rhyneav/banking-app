@@ -8,7 +8,7 @@
             <asp:TextBox ID="txtCustomerSearch" runat="server"></asp:TextBox>
             <br />
             <asp:LinkButton ID="lnkbCustomerSearch" runat="server">Search</asp:LinkButton>
-            <asp:GridView ID="grdvCustomerList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkCustomerID" DataSourceID="sdsCustomerList">
+            <asp:GridView ID="grdvCustomerList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkCustomerID" DataSourceID="sdsCustomerList" OnSelectedIndexChanged="grdvCustomerList_SelectedIndexChanged">
                 <Columns>
                     <asp:CommandField ShowSelectButton="True" />
                     <asp:BoundField DataField="pkCustomerID" HeaderText="pkCustomerID" InsertVisible="False" ReadOnly="True" SortExpression="pkCustomerID" />
@@ -23,11 +23,11 @@
             <asp:GridView ID="grdvCustomerLoanList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkLoanID" DataSourceID="sdsCustomerLoanList" OnSelectedIndexChanged="grdvCustomerLoanList_SelectedIndexChanged">
                 <Columns>
                     <asp:CommandField ShowSelectButton="True" />
-                    <asp:BoundField DataField="pkLoanID" HeaderText="pkLoanID" InsertVisible="False" ReadOnly="True" SortExpression="pkLoanID" />
-                    <asp:BoundField DataField="decPrincipal" HeaderText="decPrincipal" SortExpression="decPrincipal" />
-                    <asp:BoundField DataField="decInterestRate" HeaderText="decInterestRate" SortExpression="decInterestRate" />
-                    <asp:BoundField DataField="intMonths" HeaderText="intMonths" SortExpression="intMonths" />
-                    <asp:BoundField DataField="dtCreated" HeaderText="dtCreated" SortExpression="dtCreated" />
+                    <asp:BoundField DataField="pkLoanID" HeaderText="pkLoanID" InsertVisible="False" ReadOnly="True" SortExpression="pkLoanID" Visible="False" />
+                    <asp:BoundField DataField="decPrincipal" HeaderText="Principal" SortExpression="decPrincipal" DataFormatString="{0:c}" />
+                    <asp:BoundField DataField="decInterestRate" HeaderText="InterestRate" SortExpression="decInterestRate" />
+                    <asp:BoundField DataField="intMonths" HeaderText="Months" SortExpression="intMonths" />
+                    <asp:BoundField DataField="dtCreated" HeaderText="Origination Date" SortExpression="dtCreated" DataFormatString="{0:d}" />
                 </Columns>
             </asp:GridView>
             <asp:SqlDataSource ID="sdsCustomerLoanList" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [pkLoanID], [decPrincipal], [decInterestRate], [intMonths], [dtCreated] FROM [VlaservichtblLoan] WHERE ([fkCustomerID] = @fkCustomerID) ORDER BY [dtCreated]">
@@ -35,7 +35,7 @@
                     <asp:ControlParameter ControlID="grdvCustomerList" Name="fkCustomerID" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:SqlDataSource>
-            <asp:FormView ID="frmvCustomerLoanEdit" runat="server" DataKeyNames="pkLoanID" DataSourceID="sdsCustomerLoanEdit">
+            <asp:FormView ID="frmvCustomerLoanEdit" runat="server" DataKeyNames="pkLoanID" DataSourceID="sdsCustomerLoanEdit" Visible="False">
                 <EditItemTemplate>
                     pkLoanID:
                     <asp:Label ID="pkLoanIDLabel1" runat="server" Text='<%# Eval("pkLoanID") %>' />
@@ -95,12 +95,12 @@
                     &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                 </ItemTemplate>
             </asp:FormView>
-            <asp:SqlDataSource ID="sdsCustomerLoanEdit" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" DeleteCommand="DELETE FROM [VlaservichtblLoan] WHERE [pkLoanID] = @pkLoanID" InsertCommand="INSERT INTO [VlaservichtblLoan] ([decPrincipal], [fkCustomerID], [decInterestRate], [intMonths]) VALUES (@decPrincipal, @fkCustomerID, @decInterestRate, @intMonths)" SelectCommand="SELECT [pkLoanID], [decPrincipal], [fkCustomerID], [decInterestRate], [intMonths] FROM [VlaservichtblLoan] WHERE ([pkLoanID] = @pkLoanID)" UpdateCommand="UPDATE [VlaservichtblLoan] SET [decPrincipal] = @decPrincipal, [fkCustomerID] = @fkCustomerID, [decInterestRate] = @decInterestRate, [intMonths] = @intMonths WHERE [pkLoanID] = @pkLoanID">
+            <asp:SqlDataSource ID="sdsCustomerLoanEdit" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" DeleteCommand="DELETE FROM [VlaservichtblLoan] WHERE [pkLoanID] = @pkLoanID" InsertCommand="INSERT INTO [VlaservichtblLoan] ([decPrincipal], [fkCustomerID], [decInterestRate], [intMonths]) VALUES (@decPrincipal, @fkCustomerID, @decInterestRate, @intMonths)" SelectCommand="SELECT [pkLoanID], [decPrincipal], [fkCustomerID], [decInterestRate], [intMonths] FROM [VlaservichtblLoan] WHERE ([pkLoanID] = @pkLoanID)" UpdateCommand="UPDATE [VlaservichtblLoan] SET [decPrincipal] = @decPrincipal, [decInterestRate] = @decInterestRate, [intMonths] = @intMonths WHERE [pkLoanID] = @pkLoanID">
                 <DeleteParameters>
                     <asp:Parameter Name="pkLoanID" Type="Int32" />
                 </DeleteParameters>
                 <InsertParameters>
-                    <asp:Parameter Name="decPrincipal" Type="Decimal" />
+                    <asp:ControlParameter ControlID="grdvCustomerList" Name="decPrincipal" PropertyName="SelectedValue" Type="Decimal" />
                     <asp:Parameter Name="fkCustomerID" Type="Int32" />
                     <asp:Parameter Name="decInterestRate" Type="Decimal" />
                     <asp:Parameter Name="intMonths" Type="Int32" />
@@ -110,7 +110,6 @@
                 </SelectParameters>
                 <UpdateParameters>
                     <asp:Parameter Name="decPrincipal" Type="Decimal" />
-                    <asp:Parameter Name="fkCustomerID" Type="Int32" />
                     <asp:Parameter Name="decInterestRate" Type="Decimal" />
                     <asp:Parameter Name="intMonths" Type="Int32" />
                     <asp:Parameter Name="pkLoanID" Type="Int32" />
@@ -120,7 +119,9 @@
             <asp:GridView ID="grdvAmoritizationSchedule" runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="Month" HeaderText="Month" SortExpression="Month" />
-                    <asp:BoundField DataField="Principal" HeaderText="Beginning Amount" SortExpression="Principal" />
+                    <asp:BoundField DataField="Principal" HeaderText="Beginning Amount" SortExpression="Principal" DataFormatString="{0:c}" />
+                    <asp:BoundField DataField="InterestPaid" DataFormatString="{0:c}" HeaderText="Interest Paid" SortExpression="InterestPaid" />
+                    <asp:BoundField DataField="PrincipalPaid" DataFormatString="{0:c}" HeaderText="Principal Paid" SortExpression="PrincipalPaid" />
                 </Columns>
             </asp:GridView>
         </ContentTemplate>

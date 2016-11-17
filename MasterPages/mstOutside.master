@@ -71,7 +71,7 @@
                                 <ItemTemplate>
                                     Welcome,
                             <asp:Label ID="vcNameLabel" runat="server" Text='<%# Bind("vcName") %>' />
-                                    <asp:LinkButton ID="lbtnLogout" runat="server" Class="btn btn-warning btn-login" PostBackUrl="~/Pages/Login.aspx" OnClick="lbtnLogout_Click">Logout</asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnLogout" runat="server" Class="btn btn-warning btn-login" OnClick="lbtnLogout_Click">Logout</asp:LinkButton>
 
                                 </ItemTemplate>
                             </asp:FormView>
@@ -87,7 +87,7 @@
             </div>
             <footer class="footer">
                 <div class="container">
-                    <span class="text-muted">Place sticky footer content here.</span>
+                    <span class="text-muted">Funky bank!</span>
                 </div>
             </footer>
         </div>
