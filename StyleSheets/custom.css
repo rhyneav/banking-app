@@ -5,6 +5,11 @@
     margin-right: 12px;
 }
 
+.login, .search {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
 .navbar {
     border-radius: 0px;
     border-color: #f8f8f8; 
@@ -21,4 +26,16 @@
 
     border: 1px solid transparent;
     border-top-color: #e7e7e7
+}
+
+.row {
+    margin-bottom: 36px;
+}
+
+.payments {
+    font-size: 30px;
+}
+
+.container table, .searcher {
+    margin-top: 12px;
 }

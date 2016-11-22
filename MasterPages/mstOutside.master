@@ -85,11 +85,6 @@
                 <asp:ContentPlaceHolder ID="cphMain" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-            <footer class="footer">
-                <div class="container">
-                    <span class="text-muted">Funky bank!</span>
-                </div>
-            </footer>
         </div>
     </form>
 

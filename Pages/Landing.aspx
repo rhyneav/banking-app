@@ -3,6 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphMain" Runat="Server">
-    <p>Congrats, you have logged in!</p>
+    <h2>Congrats, you have logged in!</h2>
 </asp:Content>
 

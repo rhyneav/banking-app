@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphMain" runat="Server">
+    <h2>Please Login</h2>
     <div>
         <asp:Label ID="lblUsername" runat="server" Text="Username"></asp:Label>
         <br />
@@ -16,7 +17,7 @@
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" CssClass="alert-warning" Display="Dynamic" ErrorMessage="You must put in a password!" ValidationGroup="vgLogin"></asp:RequiredFieldValidator>
     </div>
     <div>
-        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="vgLogin" />
+        <asp:Button ID="btnLogin" class="btn btn-success login" runat="server" Text="Login" OnClick="btnLogin_Click" ValidationGroup="vgLogin" />
         <asp:SqlDataSource ID="sdsUserInformation" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [vcUserName], [vcPassword], [pkUserID] FROM [VlaservichtblUser] WHERE ([vcUserName] = @vcUserName)">
             <SelectParameters>
                 <asp:ControlParameter ControlID="txtUsername" Name="vcUserName" PropertyName="Text" Type="String" />
