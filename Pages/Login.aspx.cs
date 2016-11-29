@@ -10,7 +10,11 @@ public partial class Pages_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // Redirect away from login page if user is already logged in
+        if (Session["UserID"] != null)
+        {
+            Response.Redirect("Landing.aspx");
+        }
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {

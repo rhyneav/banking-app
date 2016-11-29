@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Welcome to the Party!" Language="C#" MasterPageFile="~/MasterPages/mstSecure.master" AutoEventWireup="true" CodeFile="Landing.aspx.cs" Inherits="Pages_Landing" %>
+﻿<%@ Page Title="Welcome to the Bank!" Language="C#" MasterPageFile="~/MasterPages/mstSecure.master" AutoEventWireup="true" CodeFile="Landing.aspx.cs" Inherits="Pages_Landing" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

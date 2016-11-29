@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/mstSecure.master" AutoEventWireup="true" CodeFile="ManageLoans.aspx.cs" Inherits="Pages_ManageLoans" %>
+﻿<%@ Page Title="Manage Loans" Language="C#" MasterPageFile="~/MasterPages/mstSecure.master" AutoEventWireup="true" CodeFile="ManageLoans.aspx.cs" Inherits="Pages_ManageLoans" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -52,17 +52,21 @@
                             <br />
                             decPrincipal:
                         <asp:TextBox ID="decPrincipalTextBox" runat="server" Text='<%# Bind("decPrincipal") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="decPrincipalTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Principal" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
                             <br />
                             fkCustomerID:
                         <asp:TextBox ID="fkCustomerIDTextBox" runat="server" Text='<%# Bind("fkCustomerID") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="fkCustomerIDTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter an ID" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
                             <br />
                             decInterestRate:
                         <asp:TextBox ID="decInterestRateTextBox" runat="server" Text='<%# Bind("decInterestRate") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="decInterestRateTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter an Interest Rate" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
                             <br />
                             intMonths:
                         <asp:TextBox ID="intMonthsTextBox" runat="server" Text='<%# Bind("intMonths") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="intMonthsTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter Total Months" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
                             <br />
-                            <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+                            <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup="Update" />
                             &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                         </EditItemTemplate>
                         <EmptyDataTemplate>
@@ -71,17 +75,21 @@
                         <InsertItemTemplate>
                             decPrincipal:
                         <asp:TextBox ID="decPrincipalTextBox" runat="server" Text='<%# Bind("decPrincipal") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="decPrincipalTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Principal" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
                             <br />
                             fkCustomerID:
                         <asp:TextBox ID="fkCustomerIDTextBox" runat="server" Text='<%# Bind("fkCustomerID") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="fkCustomerIDTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter an ID" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
                             <br />
                             decInterestRate:
                         <asp:TextBox ID="decInterestRateTextBox" runat="server" Text='<%# Bind("decInterestRate") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="decInterestRateTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter an Interest Rate" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
                             <br />
                             intMonths:
                         <asp:TextBox ID="intMonthsTextBox" runat="server" Text='<%# Bind("intMonths") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="intMonthsTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter Total Months" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
                             <br />
-                            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" ValidationGroup="Insert" />
                             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                         </InsertItemTemplate>
                         <ItemTemplate>

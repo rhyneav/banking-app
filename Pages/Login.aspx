@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Login to the Funky Bank" Language="C#" MasterPageFile="~/MasterPages/mstSecure.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Pages_Login" %>
+﻿<%@ Page Title="Login to the Bank" Language="C#" MasterPageFile="~/MasterPages/mstSecure.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Pages_Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
