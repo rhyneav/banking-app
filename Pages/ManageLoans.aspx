@@ -160,15 +160,15 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    Monthly Payment:<br />
+                    Monthly Payment<br />
                     <div class="payments">
                         <asp:Label ID="lblPayment" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
+                <br />
+                <br />
             <div class="col-md-9">
-                <br />
-                <br />
-                Payment Details:
+                Payment Details
                 <asp:GridView ID="grdvAmoritizationSchedule" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
