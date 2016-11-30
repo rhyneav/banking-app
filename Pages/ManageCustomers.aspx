@@ -4,30 +4,30 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphMain" Runat="Server">
     <asp:GridView ID="grdvCustomerList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="pkCustomerID" DataSourceID="sdsCustomerList" ForeColor="#333333" GridLines="None">
-        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+        <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:CommandField ShowSelectButton="True" />
             <asp:BoundField DataField="pkCustomerID" HeaderText="pkCustomerID" InsertVisible="False" ReadOnly="True" SortExpression="pkCustomerID" Visible="False" />
             <asp:BoundField DataField="vcName" HeaderText="Customer Name" SortExpression="vcName" />
             <asp:BoundField DataField="dtCreated" DataFormatString="{0:d}" HeaderText="Since" SortExpression="dtCreated" />
         </Columns>
-        <EditRowStyle BackColor="#999999" />
-        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-        <SortedAscendingCellStyle BackColor="#E9E7E2" />
-        <SortedAscendingHeaderStyle BackColor="#506C8C" />
-        <SortedDescendingCellStyle BackColor="#FFFDF8" />
-        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+        <EditRowStyle BackColor="#2461BF" />
+        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EFF3FB" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+        <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
     <asp:FormView ID="frmvCustomerEdit" runat="server" DataKeyNames="pkCustomerID" DataSourceID="sdsCustomerEdit" OnItemInserted="frmvCustomerEdit_ItemInserted">
         <EditItemTemplate>
-            pkCustomerID:
+            Customer ID:
             <asp:Label ID="pkCustomerIDLabel1" runat="server" Text='<%# Eval("pkCustomerID") %>' />
             <br />
-            vcName:
+            Name:
             <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="vcNameTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Name" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
             <br />
@@ -38,7 +38,7 @@
             <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
         </EmptyDataTemplate>
         <InsertItemTemplate>
-            vcName:
+            Name:
             <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="vcNameTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Name" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
             <br />
@@ -46,10 +46,10 @@
             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </InsertItemTemplate>
         <ItemTemplate>
-            pkCustomerID:
+            Customer ID:
             <asp:Label ID="pkCustomerIDLabel" runat="server" Text='<%# Eval("pkCustomerID") %>' />
             <br />
-            vcName:
+            Name:
             <asp:Label ID="vcNameLabel" runat="server" Text='<%# Bind("vcName") %>' />
             <br />
             <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />

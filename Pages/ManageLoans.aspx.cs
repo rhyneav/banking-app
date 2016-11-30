@@ -19,7 +19,9 @@ public partial class Pages_ManageLoans : System.Web.UI.Page
         Loan.APR = double.Parse(grdvCustomerLoanList.SelectedRow.Cells[3].Text.ToString());
         Loan.NumberOfMonths = int.Parse(grdvCustomerLoanList.SelectedRow.Cells[4].Text.ToString());
 
-        lblPayment.Text = Loan.MonthlyPayment.ToString();
+
+
+        lblPayment.Text = String.Format("{0:C2}", Convert.ToDecimal(Loan.MonthlyPayment));
 
         grdvAmoritizationSchedule.DataSource = Loan.Schedule;
         grdvAmoritizationSchedule.DataBind();

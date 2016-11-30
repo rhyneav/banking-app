@@ -41,3 +41,7 @@
 .container table, .searcher {
     margin-top: 12px;
 }
+
+table tr td, table tr th {
+    padding: 6px;
+}

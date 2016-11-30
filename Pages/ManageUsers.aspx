@@ -3,30 +3,41 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphMain" Runat="Server">
-    <asp:GridView ID="grdvUserList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkUserID" DataSourceID="sdsUserList">
+    <asp:GridView ID="grdvUserList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkUserID" DataSourceID="sdsUserList" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:CommandField ShowSelectButton="True" />
-            <asp:BoundField DataField="vcUserName" HeaderText="vcUserName" SortExpression="vcUserName" />
-            <asp:BoundField DataField="vcPassword" HeaderText="vcPassword" SortExpression="vcPassword" />
-            <asp:BoundField DataField="vcName" HeaderText="vcName" SortExpression="vcName" />
-            <asp:BoundField DataField="pkUserID" HeaderText="pkUserID" InsertVisible="False" ReadOnly="True" SortExpression="pkUserID" />
+            <asp:BoundField DataField="vcUserName" HeaderText="User Name" SortExpression="vcUserName" />
+            <asp:BoundField DataField="vcPassword" HeaderText="Password" SortExpression="vcPassword" />
+            <asp:BoundField DataField="vcName" HeaderText="Name" SortExpression="vcName" />
+            <asp:BoundField DataField="pkUserID" HeaderText="User ID" InsertVisible="False" ReadOnly="True" SortExpression="pkUserID" />
         </Columns>
+        <EditRowStyle BackColor="#2461BF" />
+        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EFF3FB" />
+        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+        <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
     <asp:SqlDataSource ID="sdsUserList" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [vcUserName], [vcPassword], [vcName], [pkUserID] FROM [VlaservichtblUser] ORDER BY [dtCreated]"></asp:SqlDataSource>
     <asp:FormView ID="frmvEditUser" runat="server" DataKeyNames="pkUserID" DataSourceID="sdsEditUser">
         <EditItemTemplate>
-            pkUserID:
+            User ID:
             <asp:Label ID="pkUserIDLabel1" runat="server" Text='<%# Eval("pkUserID") %>' />
             <br />
-            vcUserName:
+            User Name:
             <asp:TextBox ID="vcUserNameTextBox" runat="server" Text='<%# Bind("vcUserName") %>' />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="vcUserNameTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Username" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
             <br />
-            vcPassword:
+            Password:
             <asp:TextBox ID="vcPasswordTextBox" runat="server" Text='<%# Bind("vcPassword") %>' />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="vcPasswordTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Password" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
             <br />
-            vcName:
+            Name:
             <asp:TextBox ID="vcNameTextBox" runat="server" Text='<%# Bind("vcName") %>' />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="vcNameTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Name" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
             <br />
@@ -37,7 +48,7 @@
             <asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
         </EmptyDataTemplate>
         <InsertItemTemplate>
-            UserName:
+            User Name:
             <asp:TextBox ID="vcUserNameTextBox" runat="server" Text='<%# Bind("vcUserName") %>' />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="vcUserNameTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Username" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
             <br />
@@ -53,10 +64,10 @@
             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
         </InsertItemTemplate>
         <ItemTemplate>
-            UserID:
+            User ID:
             <asp:Label ID="pkUserIDLabel" runat="server" Text='<%# Eval("pkUserID") %>' />
             <br />
-            UserName:
+            User Name:
             <asp:Label ID="vcUserNameLabel" runat="server" Text='<%# Bind("vcUserName") %>' />
             <br />
             Password:

@@ -14,12 +14,23 @@
                 </div>
                 <div class="col-md-4">
                     Customers
-                    <asp:GridView ID="grdvCustomerList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkCustomerID" DataSourceID="sdsCustomerList" OnSelectedIndexChanged="grdvCustomerList_SelectedIndexChanged">
+                    <asp:GridView ID="grdvCustomerList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkCustomerID" DataSourceID="sdsCustomerList" OnSelectedIndexChanged="grdvCustomerList_SelectedIndexChanged" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:CommandField ShowSelectButton="True" />
-                            <asp:BoundField DataField="pkCustomerID" HeaderText="pkCustomerID" InsertVisible="False" ReadOnly="True" SortExpression="pkCustomerID" />
-                            <asp:BoundField DataField="vcName" HeaderText="vcName" SortExpression="vcName" />
+                            <asp:BoundField DataField="pkCustomerID" HeaderText="Customer ID" InsertVisible="False" ReadOnly="True" SortExpression="pkCustomerID" />
+                            <asp:BoundField DataField="vcName" HeaderText="Name" SortExpression="vcName" />
                         </Columns>
+                        <EditRowStyle BackColor="#2461BF" />
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EFF3FB" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                        <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
                     <asp:SqlDataSource ID="sdsCustomerList" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="VlaservichspGetCustomerList" SelectCommandType="StoredProcedure">
                         <SelectParameters>
@@ -29,15 +40,26 @@
                 </div>
                 <div class="col-md-5">
                     Loans
-                    <asp:GridView ID="grdvCustomerLoanList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkLoanID" DataSourceID="sdsCustomerLoanList" OnSelectedIndexChanged="grdvCustomerLoanList_SelectedIndexChanged">
+                    <asp:GridView ID="grdvCustomerLoanList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="pkLoanID" DataSourceID="sdsCustomerLoanList" OnSelectedIndexChanged="grdvCustomerLoanList_SelectedIndexChanged" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:CommandField ShowSelectButton="True" />
                             <asp:BoundField DataField="pkLoanID" HeaderText="pkLoanID" InsertVisible="False" ReadOnly="True" SortExpression="pkLoanID" Visible="False" />
                             <asp:BoundField DataField="decPrincipal" HeaderText="Principal" SortExpression="decPrincipal" DataFormatString="{0:c}" />
-                            <asp:BoundField DataField="decInterestRate" HeaderText="InterestRate" SortExpression="decInterestRate" />
+                            <asp:BoundField DataField="decInterestRate" HeaderText="Interest Rate" SortExpression="decInterestRate" />
                             <asp:BoundField DataField="intMonths" HeaderText="Months" SortExpression="intMonths" />
                             <asp:BoundField DataField="dtCreated" HeaderText="Origination Date" SortExpression="dtCreated" DataFormatString="{0:d}" />
                         </Columns>
+                        <EditRowStyle BackColor="#2461BF" />
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EFF3FB" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                        <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
                     <asp:SqlDataSource ID="sdsCustomerLoanList" runat="server" ConnectionString="<%$ ConnectionStrings:2016Fall3050001ConnectionString %>" SelectCommand="SELECT [pkLoanID], [decPrincipal], [decInterestRate], [intMonths], [dtCreated] FROM [VlaservichtblLoan] WHERE ([fkCustomerID] = @fkCustomerID) ORDER BY [dtCreated]">
                         <SelectParameters>
@@ -47,22 +69,22 @@
 
                     <asp:FormView ID="frmvCustomerLoanEdit" runat="server" DataKeyNames="pkLoanID" DataSourceID="sdsCustomerLoanEdit" Visible="False">
                         <EditItemTemplate>
-                            pkLoanID:
+                            Loan ID:
                         <asp:Label ID="pkLoanIDLabel1" runat="server" Text='<%# Eval("pkLoanID") %>' />
                             <br />
-                            decPrincipal:
+                            Principal:
                         <asp:TextBox ID="decPrincipalTextBox" runat="server" Text='<%# Bind("decPrincipal") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="decPrincipalTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Principal" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
                             <br />
-                            fkCustomerID:
+                            Customer ID:
                         <asp:TextBox ID="fkCustomerIDTextBox" runat="server" Text='<%# Bind("fkCustomerID") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="fkCustomerIDTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter an ID" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
                             <br />
-                            decInterestRate:
+                            Interest Rate:
                         <asp:TextBox ID="decInterestRateTextBox" runat="server" Text='<%# Bind("decInterestRate") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="decInterestRateTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter an Interest Rate" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
                             <br />
-                            intMonths:
+                            Months:
                         <asp:TextBox ID="intMonthsTextBox" runat="server" Text='<%# Bind("intMonths") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="intMonthsTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter Total Months" SetFocusOnError="True" ValidationGroup="Update"></asp:RequiredFieldValidator>
                             <br />
@@ -73,19 +95,19 @@
                             <asp:LinkButton ID="NewButton" CssClass="btn btn-info" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                         </EmptyDataTemplate>
                         <InsertItemTemplate>
-                            decPrincipal:
+                            Principal:
                         <asp:TextBox ID="decPrincipalTextBox" runat="server" Text='<%# Bind("decPrincipal") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="decPrincipalTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter a Principal" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
                             <br />
-                            fkCustomerID:
+                            Customer ID:
                         <asp:TextBox ID="fkCustomerIDTextBox" runat="server" Text='<%# Bind("fkCustomerID") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="fkCustomerIDTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter an ID" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
                             <br />
-                            decInterestRate:
+                            Interest Rate:
                         <asp:TextBox ID="decInterestRateTextBox" runat="server" Text='<%# Bind("decInterestRate") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="decInterestRateTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter an Interest Rate" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
                             <br />
-                            intMonths:
+                            Months:
                         <asp:TextBox ID="intMonthsTextBox" runat="server" Text='<%# Bind("intMonths") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="intMonthsTextBox" CssClass="alert-warning" Display="Dynamic" ErrorMessage="Enter Total Months" SetFocusOnError="True" ValidationGroup="Insert"></asp:RequiredFieldValidator>
                             <br />
@@ -93,19 +115,19 @@
                             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                         </InsertItemTemplate>
                         <ItemTemplate>
-                            pkLoanID:
+                            Loan ID:
                         <asp:Label ID="pkLoanIDLabel" runat="server" Text='<%# Eval("pkLoanID") %>' />
                             <br />
-                            decPrincipal:
+                            Principal:
                         <asp:Label ID="decPrincipalLabel" runat="server" Text='<%# Bind("decPrincipal") %>' />
                             <br />
-                            fkCustomerID:
+                            Customer ID:
                         <asp:Label ID="fkCustomerIDLabel" runat="server" Text='<%# Bind("fkCustomerID") %>' />
                             <br />
-                            decInterestRate:
+                            Interest Rate:
                         <asp:Label ID="decInterestRateLabel" runat="server" Text='<%# Bind("decInterestRate") %>' />
                             <br />
-                            intMonths:
+                            Months:
                         <asp:Label ID="intMonthsLabel" runat="server" Text='<%# Bind("intMonths") %>' />
                             <br />
                             <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
@@ -144,14 +166,27 @@
                     </div>
                 </div>
             <div class="col-md-9">
+                <br />
+                <br />
                 Payment Details:
-                <asp:GridView ID="grdvAmoritizationSchedule" runat="server" AutoGenerateColumns="False">
+                <asp:GridView ID="grdvAmoritizationSchedule" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="Month" HeaderText="Month" SortExpression="Month" />
                         <asp:BoundField DataField="Principal" HeaderText="Beginning Amount" SortExpression="Principal" DataFormatString="{0:c}" />
                         <asp:BoundField DataField="InterestPaid" DataFormatString="{0:c}" HeaderText="Interest Paid" SortExpression="InterestPaid" />
                         <asp:BoundField DataField="PrincipalPaid" DataFormatString="{0:c}" HeaderText="Principal Paid" SortExpression="PrincipalPaid" />
                     </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
             </div>
             </div>
